@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Crazy Button</title>
+<!--CSS-->
+	<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<style type="text/css">
+	body{padding:20px;
+		padding-bottom: 0px;}
+	.row{padding-left: 20px;}	
+
+	.btn-crazy
+	{
+		position:absolute;
+		top:300px;
+		left:35%;
+		box-shadow: 2px 5px 5px gray;
+		/*transition: 0.5 ease all;*/
+		
+	}
+		
+	</style>
+	
+	
+</head>
+<body>
+	<div id="jumbo" class="jumbotron text-center">
+		<h1 id="h1">Hello Wolrd!!</h1>
+		
+	</div>
+	<div class="row">
+		<button id="btnclr" type="button" class="btn btn-primary btn-crazy" onclick="changeColor()">Change Color</button>
+		<button type="button" class="btn btn-success btn-crazy" onclick="changeTxt()">Change Text</button>
+		<button type="button" class="btn btn-danger btn-crazy" ondblclick="newDiv()">Add new Div!!</button>
+	</div>
+<!--JavaScript-->
+<script type="text/javascript">
+
+	function changeColor()
+	{
+		document.getElementById('h1').style.color='blue';
+		document.getElementById('jumbo').style.backgroundColor='#c00c00';
+		document.getElementById('btnclr').style.backgroundColor='red';
+	}
+	function newDiv()
+	{
+		var p=document.createElement('p');
+		var loc=window.location.pathname;
+		var node=document.createTextNode('My pathname'+ ' ' + loc);
+		p.appendChild(node);
+		var div1=document.getElementById('jumbo');
+		div1.appendChild(p);	
+	}
+
+	// select the specific button
+		const crazyButton=document.querySelectorAll('.btn-crazy');
+		
+	//Function to make button go crazy
+	function goCrazy()
+	{	
+	//Generate random numbers and
+		const leftRand=Math.random()*(window.innerWidth - this.clientWidth);
+		const topRand=Math.random()*(window.innerHeight-this.clientHeight);
+		this.style.left=leftRand+'px';
+		this.style.top=topRand+'px';
+		console.groupCollapsed('Log')
+		console.log(leftRand,topRand);
+		console.groupEnd();
+	}
+	//Add event Listener to that button
+	crazyButton.forEach(button=>button.addEventListener('mouseenter',goCrazy));
+
+
+	
+
+
+</script>
+</body>
+</html>
